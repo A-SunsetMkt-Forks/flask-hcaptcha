@@ -1,4 +1,3 @@
-
 from setuptools import setup, find_packages
 import flask_recaptcha
 
@@ -9,18 +8,17 @@ setup(
     version=PACKAGE.__version__,
     license=PACKAGE.__license__,
     author=PACKAGE.__author__,
-    author_email='mardix@pylot.io',
-    description="The new Google ReCaptcha implementation for Flask without Flask-WTF",
+    author_email='info@knugi.xyz',
+    description="An heCaptcha implementation for Flask",
     long_description=PACKAGE.__doc__,
-    url='http://github.com/mardix/flask-recaptcha/',
-    download_url='http://github.com/mardix/flask-recaptcha/tarball/master',
-    py_modules=['flask_recaptcha'],
+    url='https://github.com/KnugiHK/flask-hcaptcha/',
+    py_modules=['flask_hcaptcha'],
     include_package_data=True,
     install_requires=[
         "flask",
         "requests"
     ],
-    keywords=['flask', 'recaptcha', "validate"],
+    keywords=['flask', 'hcaptcha', "validate", "captcha"],
     platforms='any',
     classifiers=[
         'Environment :: Web Environment',

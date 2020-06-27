@@ -1,34 +1,32 @@
-# Flask-ReCaptcha
+# Flask-hCaptcha
 
-The new Google ReCaptcha implementation for Flask without Flask-WTF.
-
-Can also be used as standalone
+A hCaptcha extension for Flask based on flask-recaptcha.
 
 ---
 
 ## Install
 
-    pip install flask-recaptcha
+    pip install flask-hcaptcha
 
 # Usage
 
 ### Implementation view.py
 
     from flask import Flask
-    from flask_recaptcha import ReCaptcha
+    from flask_hcaptcha import hCaptcha
 
     app = Flask(__name__)
-    recaptcha = ReCaptcha(app=app)
+    hcaptcha = hCaptcha(app)
     
     #or 
     
-    recaptcha = Recaptcha()
-    recaptcha.init_app(app)
+    hcaptcha = hCaptcha()
+    hcaptcha.init_app(app)
     
 
-### In your template: **{{ recaptcha }}**
+### In your template: **{{ hcaptcha }}**
 
-Inside of the form you want to protect, include the tag: **{{ recaptcha }}**
+Inside of the form you want to protect, include the tag: **{{ hcaptcha }}**
 
 It will insert the code automatically
 
@@ -37,7 +35,7 @@ It will insert the code automatically
         ... your field
         ... your field
 
-        {{ recaptcha }}
+        {{ hcaptcha }}
 
         [submit button]
     </form>
@@ -48,15 +46,15 @@ It will insert the code automatically
 In the view that's going to validate the captcha
 
     from flask import Flask
-    from flask_recaptcha import ReCaptcha
+    from flask_hcaptcha import hCaptcha
 
     app = Flask(__name__)
-    recaptcha = ReCaptcha(app=app)
+    hcaptcha = hCaptcha(app)
 
     @route("/submit", methods=["POST"])
     def submit():
 
-        if recaptcha.verify():
+        if hcaptcha.verify():
             # SUCCESS
             pass
         else:
@@ -66,20 +64,20 @@ In the view that's going to validate the captcha
 
 ## Api
 
-**reCaptcha.__init__(app, site_key, secret_key, is_enabled=True)**
+**hCaptcha.__init__(app, site_key, secret_key, is_enabled=True)**
 
-**reCaptcha.get_code()**
+**hCaptcha.get_code()**
 
 Returns the HTML code to implement. But you can use
-**{{ recaptcha }}** directly in your template
+**{{ hcaptcha }}** directly in your template
 
-**reCaptcha.verfiy()**
+**hCaptcha.verfiy()**
 
 Returns bool
 
 ## In Template
 
-Just include **{{ recaptcha }}** wherever you want to show the recaptcha
+Just include **{{ hcaptcha }}** wherever you want to show the hcaptcha
 
 
 ## Config
@@ -87,31 +85,17 @@ Just include **{{ recaptcha }}** wherever you want to show the recaptcha
 Flask-ReCaptcha is configured through the standard Flask config API.
 These are the available options:
 
-**RECAPTCHA_ENABLED**: Bool - True by default, when False it will bypass validation
+**HCAPTCHA_ENABLED**: Bool - True by default, when False it will bypass validation
 
-**RECAPTCHA_SITE_KEY** : Public key
+**HCAPTCHA_SITE_KEY** : Public key
 
-**RECAPTCHA_SECRET_KEY**: Private key
-
-The following are **Optional** arguments.
-
-**RECAPTCHA_THEME**: String - Theme can be 'light'(default) or 'dark'
-
-**RECAPTCHA_TYPE**: String - Type of recaptcha can be 'image'(default) or 'audio'
-
-**RECAPTCHA_SIZE**: String - Size of the image can be 'normal'(default) or 'compact'
-
-**RECAPTCHA_TABINDEX**: Int - Tabindex of the widget can be used, if the page uses tabidex, to make navigation easier. Defaults to 0
+**HCAPTCHA_SECRET_KEY**: Private key
 
     RECAPTCHA_ENABLED = True
     RECAPTCHA_SITE_KEY = ""
     RECAPTCHA_SECRET_KEY = ""
-    RECAPTCHA_THEME = "dark"
-    RECAPTCHA_TYPE = "image"
-    RECAPTCHA_SIZE = "compact"
-    RECAPTCHA_RTABINDEX = 10
 
 ---
 
-(c) 2015 Mardix
+(c) 2020 Knugi (originally ReCaptcha by Mardix 2015)
 

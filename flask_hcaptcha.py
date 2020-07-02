@@ -1,6 +1,5 @@
 """
-hCaptcha implementation for Flask without Flask-WTF
-Can be used as standalone
+A hCaptcha extension for Flask based on flask-recaptcha
 """
 
 __NAME__ = "Flask-hCaptcha"

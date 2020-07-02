@@ -9,7 +9,7 @@ setup(
     license=PACKAGE.__license__,
     author=PACKAGE.__author__,
     author_email='info@knugi.xyz',
-    description="A heCaptcha implementation for Flask",
+    description="A hCaptcha extension for Flask based on flask-recaptcha",
     long_description=PACKAGE.__doc__,
     url='https://github.com/KnugiHK/flask-hcaptcha/',
     py_modules=['flask_hcaptcha'],

@@ -1,5 +1,5 @@
 """
-The new Google ReCaptcha implementation for Flask without Flask-WTF
+hCaptcha implementation for Flask without Flask-WTF
 Can be used as standalone
 """
 
@@ -63,6 +63,6 @@ class hCaptcha(object):
                 "remoteip": remote_ip or request.environ.get('REMOTE_ADDR')
             }
 
-            r = requests.get(self.VERIFY_URL, params=data)
+            r = requests.post(self.VERIFY_URL, data=data)
             return r.json()["success"] if r.status_code == 200 else False
         return True

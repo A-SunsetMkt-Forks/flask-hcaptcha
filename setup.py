@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
-import flask_recaptcha
+import flask_hcaptcha
 
-PACKAGE = flask_recaptcha
+PACKAGE = flask_hcaptcha
 
 setup(
     name=PACKAGE.__NAME__,

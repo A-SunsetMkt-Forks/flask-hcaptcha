@@ -1,3 +1,6 @@
+- 0.5.0
+    - Change support from reCaptcha to hCaptcha
+
 - 0.4.1
     - Added Py.Test
     - more refactoring

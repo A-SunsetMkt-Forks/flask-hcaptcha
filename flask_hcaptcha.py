@@ -4,7 +4,7 @@ Can be used as standalone
 """
 
 __NAME__ = "Flask-hCaptcha"
-__version__ = "0.4.2"
+__version__ = "0.5.0"
 __license__ = "MIT"
 __author__ = "Knugi (originally ReCaptcha by Mardix)"
 __copyright__ = "(c) 2020 Knugi (originally ReCaptcha by Mardix 2015)"
@@ -19,7 +19,6 @@ except ImportError as ex:
 
 class DEFAULTS(object):
     IS_ENABLED = True
-
 
 class hCaptcha(object):
 

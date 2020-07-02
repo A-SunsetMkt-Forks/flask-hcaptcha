@@ -2,6 +2,8 @@ from setuptools import setup, find_packages
 import flask_hcaptcha
 
 PACKAGE = flask_hcaptcha
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
 setup(
     name=PACKAGE.__NAME__,
@@ -10,7 +12,8 @@ setup(
     author=PACKAGE.__author__,
     author_email='info@knugi.xyz',
     description="A hCaptcha extension for Flask based on flask-recaptcha",
-    long_description=PACKAGE.__doc__,
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     url='https://github.com/KnugiHK/flask-hcaptcha/',
     py_modules=['flask_hcaptcha'],
     include_package_data=True,

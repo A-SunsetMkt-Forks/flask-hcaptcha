@@ -1,5 +1,6 @@
 # Flask-hCaptcha
 [![Latest version released on PyPi](https://img.shields.io/pypi/v/Flask-hCaptcha.svg?style=flat&label=latest%20version)](https://pypi.org/project/Flask-hCaptcha/)
+![Python package](https://github.com/KnugiHK/flask-hcaptcha/workflows/Python%20package/badge.svg)
 
 A hCaptcha extension for Flask based on flask-recaptcha.
 

@@ -1,5 +1,5 @@
 """
-A hCaptcha extension for Flask based on flask-recaptcha 
+A hCaptcha extension for Flask based on flask-recaptcha
 """
 
 __NAME__ = "Flask-hCaptcha"
@@ -65,6 +65,6 @@ class hCaptcha(object):
                 "remoteip": remote_ip or request.environ.get('REMOTE_ADDR')
             }
 
-            r = requests.get(self.VERIFY_URL, params=data)
+            r = requests.post(self.VERIFY_URL, data=data)
             return r.json()["success"] if r.status_code == 200 else False
         return True

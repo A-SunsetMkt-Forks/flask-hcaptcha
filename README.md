@@ -3,6 +3,9 @@
 
 A hCaptcha extension for Flask based on flask-recaptcha.
 
+
+This repo is part of [self-host video streaming project](https://github.com/users/KnugiHK/projects/3).
+
 ---
 
 ## Install

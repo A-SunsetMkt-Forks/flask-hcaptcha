@@ -32,7 +32,7 @@ def test_hcaptcha_disabled():
 
 def test_hcaptcha_disabled_flask():
     app.config.update({
-        "RECAPTCHA_ENABLED": False
+        "HCAPTCHA_ENABLED": False
     })
     hcaptcha = hCaptcha(app=app)
     assert hcaptcha.is_enabled == False

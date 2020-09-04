@@ -49,7 +49,7 @@ class hCaptcha(object):
 
     def get_code(self):
         """
-        Returns the new ReCaptcha code
+        Returns the new hCaptcha code
         :return:
         """
         return "" if not self.is_enabled else ("""

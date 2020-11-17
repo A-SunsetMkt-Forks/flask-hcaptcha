@@ -3,7 +3,7 @@ A hCaptcha extension for Flask based on flask-recaptcha
 """
 
 __NAME__ = "Flask-hCaptcha"
-__version__ = "0.5.1"
+__version__ = "0.5.4"
 __license__ = "MIT"
 __author__ = "Knugi (originally ReCaptcha by Mardix)"
 __copyright__ = "(c) 2020 Knugi (originally ReCaptcha by Mardix 2015)"

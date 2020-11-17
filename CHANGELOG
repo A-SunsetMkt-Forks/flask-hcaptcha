@@ -1,4 +1,9 @@
-- 0.5.0
+- 0.5.4
+    - Switch from GET to POST in function "verify"
+    - Test cases bug fixed
+    - Bug fixed for geting "h-captcha-response"
+
+- 0.5.1
     - Change support from reCaptcha to hCaptcha
 
 - 0.4.1

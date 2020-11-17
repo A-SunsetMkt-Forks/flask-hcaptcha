@@ -67,7 +67,7 @@ In the view that's going to validate the captcha
             pass
 
 
-## Api
+## API
 
 **hCaptcha.__init__(app, site_key, secret_key, is_enabled=True)**
 
@@ -76,7 +76,7 @@ In the view that's going to validate the captcha
 Returns the HTML code to implement. But you can use
 **{{ hcaptcha }}** directly in your template
 
-**hCaptcha.verfiy()**
+**hCaptcha.verify()**
 
 Returns bool
 

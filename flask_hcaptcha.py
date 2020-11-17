@@ -61,7 +61,7 @@ class hCaptcha(object):
         if self.is_enabled:
             data = {
                 "secret": BlueprintCompatibility.secret_key,
-                "response": response or request.form.get('h-recaptcha-response'),
+                "response": response or request.form.get('h-captcha-response'),
                 "remoteip": remote_ip or request.environ.get('REMOTE_ADDR')
             }
 

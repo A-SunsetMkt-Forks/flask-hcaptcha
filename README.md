@@ -102,5 +102,5 @@ These are the available options:
 
 ---
 
-(c) 2020 Knugi (originally ReCaptcha by Mardix 2015)
+(c) 2021 Knugi (originally ReCaptcha by Mardix 2015)
 

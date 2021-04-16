@@ -100,6 +100,10 @@ These are the available options:
     RECAPTCHA_SITE_KEY = ""
     RECAPTCHA_SECRET_KEY = ""
 
+## Todo
+1. Support [Invisible Captcha](https://docs.hcaptcha.com/invisible)
+2. Support the use of [Language Codes](https://docs.hcaptcha.com/languages)
+
 ---
 
 (c) 2021 Knugi (originally ReCaptcha by Mardix 2015)

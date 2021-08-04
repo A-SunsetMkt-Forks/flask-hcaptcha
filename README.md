@@ -87,7 +87,7 @@ Just include **{{ hcaptcha }}** wherever you want to show the hcaptcha
 
 ## Config
 
-Flask-ReCaptcha is configured through the standard Flask config API.
+Flask-hCaptcha is configured through the standard Flask config API.
 These are the available options:
 
 **HCAPTCHA_ENABLED**: Bool - True by default, when False it will bypass validation
@@ -96,9 +96,9 @@ These are the available options:
 
 **HCAPTCHA_SECRET_KEY**: Private key
 
-    RECAPTCHA_ENABLED = True
-    RECAPTCHA_SITE_KEY = ""
-    RECAPTCHA_SECRET_KEY = ""
+    HCAPTCHA_ENABLED = True
+    HCAPTCHA_SITE_KEY = ""
+    HCAPTCHA_SECRET_KEY = ""
 
 ## Todo
 1. Support [Invisible Captcha](https://docs.hcaptcha.com/invisible)

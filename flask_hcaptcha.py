@@ -10,7 +10,10 @@ __copyright__ = "(c) 2020 Knugi (originally ReCaptcha by Mardix 2015)"
 
 try:
     from flask import request
-    from jinja2 import Markup
+    try:
+        from jinja2 import Markup
+    except ImportError:
+        from markupsafe import Markup
     import requests
 except ImportError as ex:
     print("Missing dependencies")

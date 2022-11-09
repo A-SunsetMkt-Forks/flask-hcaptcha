@@ -57,7 +57,14 @@ class hCaptcha(object):
     secret_key = None
     is_enabled = False
 
-    def __init__(self, app=None, site_key=None, secret_key=None, is_enabled=True, **kwargs):
+    def __init__(
+        self,
+        app=None,
+        site_key=None,
+        secret_key=None,
+        is_enabled=True,
+        **kwargs
+    ):
         self.verify = self.verify_sync
         if site_key:
             BlueprintCompatibility.site_key = site_key
@@ -68,16 +75,20 @@ class hCaptcha(object):
             self.init_app(app=app)
 
     def init_app(self, app=None):
-        self.__init__(site_key=app.config.get("HCAPTCHA_SITE_KEY"),
-                      secret_key=app.config.get("HCAPTCHA_SECRET_KEY"),
-                      is_enabled=app.config.get("HCAPTCHA_ENABLED", DEFAULTS.IS_ENABLED))
+        self.__init__(
+            site_key=app.config.get("HCAPTCHA_SITE_KEY"),
+            secret_key=app.config.get("HCAPTCHA_SECRET_KEY"),
+            is_enabled=app.config.get("HCAPTCHA_ENABLED", DEFAULTS.IS_ENABLED)
+        )
         global request
         if app.config.get("HCAPTCHA_ASYNC", DEFAULTS.ASYNC):
             self.verify = self.verify_async
             try:
                 request = quart_request
             except NameError:
-                print("flask_hcaptcha: Missing dependencies. Did you accidentally set HCAPTCHA_ASYNC to True?")
+                print(
+                    "flask_hcaptcha: Missing dependencies. Did "
+                    "you accidentally set HCAPTCHA_ASYNC to True?")
                 exit()
         else:
             self.verify = self.verify_sync
@@ -117,7 +128,10 @@ class hCaptcha(object):
         if self.is_enabled:
             data = {
                 "secret": BlueprintCompatibility.secret_key,
-                "response": response or (await request.form).get('h-captcha-response', ""),
+                "response": response or (await request.form).get(
+                    'h-captcha-response',
+                    ""
+                ),
             }
 
             r = requests.post(self.VERIFY_URL, data=data)

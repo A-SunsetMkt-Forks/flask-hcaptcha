@@ -58,6 +58,7 @@ class hCaptcha(object):
     is_enabled = False
 
     def __init__(self, app=None, site_key=None, secret_key=None, is_enabled=True, **kwargs):
+        self.verify = self.verify_sync
         if site_key:
             BlueprintCompatibility.site_key = site_key
             BlueprintCompatibility.secret_key = secret_key

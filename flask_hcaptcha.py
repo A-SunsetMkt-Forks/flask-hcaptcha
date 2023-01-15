@@ -34,11 +34,11 @@ try:
         from jinja2 import Markup
     except ImportError:
         from markupsafe import Markup
-    import requests
 except ImportError:
     print("flask_hcaptcha: Missing dependencies")
     exit()
 
+http_client = None
 
 class BlueprintCompatibility(object):
     site_key = None
@@ -80,11 +80,13 @@ class hCaptcha(object):
             secret_key=app.config.get("HCAPTCHA_SECRET_KEY"),
             is_enabled=app.config.get("HCAPTCHA_ENABLED", DEFAULTS.IS_ENABLED)
         )
-        global request
+        global request, http_client
         if app.config.get("HCAPTCHA_ASYNC", DEFAULTS.ASYNC):
             self.verify = self.verify_async
             try:
                 request = quart_request
+                import aiohttp
+                http_client = aiohttp
             except NameError:
                 print(
                     "flask_hcaptcha: Missing dependencies. Did "
@@ -94,6 +96,8 @@ class hCaptcha(object):
             self.verify = self.verify_sync
             try:
                 request = flask_request
+                import requests
+                http_client = request
             except NameError:
                 print("flask_hcaptcha: Missing dependencies")
                 exit()
@@ -120,7 +124,7 @@ class hCaptcha(object):
                 "remoteip": remote_ip or request.environ.get('REMOTE_ADDR')
             }
 
-            r = requests.post(self.VERIFY_URL, data=data)
+            r = http_client.post(self.VERIFY_URL, data=data)
             return r.json()["success"] if r.status_code == 200 else False
         return True
 
@@ -133,7 +137,9 @@ class hCaptcha(object):
                     ""
                 ),
             }
-
-            r = requests.post(self.VERIFY_URL, data=data)
-            return r.json()["success"] if r.status_code == 200 else False
-        return True
+            async with http_client.ClientSession() as session:
+                async with session.post(self.VERIFY_URL, data=data) as resp:
+                    result = await resp.json()
+                    return result["success"] if resp.status == 200 else False
+        else:
+            return True

@@ -66,6 +66,9 @@ class hCaptcha(object):
         **kwargs
     ):
         self.verify = self.verify_sync
+        import requests
+        global http_client
+        http_client = requests
         if site_key:
             BlueprintCompatibility.site_key = site_key
             BlueprintCompatibility.secret_key = secret_key
@@ -96,8 +99,6 @@ class hCaptcha(object):
             self.verify = self.verify_sync
             try:
                 request = flask_request
-                import requests
-                http_client = request
             except NameError:
                 print("flask_hcaptcha: Missing dependencies")
                 exit()

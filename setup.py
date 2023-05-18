@@ -10,7 +10,7 @@ setup(
     version=PACKAGE.__version__,
     license=PACKAGE.__license__,
     author=PACKAGE.__author__,
-    author_email='info@knugi.xyz',
+    author_email='hello@knugi.com',
     description="A hCaptcha extension for Flask based on flask-recaptcha",
     long_description=long_description,
     long_description_content_type="text/markdown",

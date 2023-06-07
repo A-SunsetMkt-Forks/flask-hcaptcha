@@ -18,9 +18,11 @@ setup(
     py_modules=['flask_hcaptcha'],
     include_package_data=True,
     install_requires=[
-        "flask",
         "requests"
     ],
+    extras_require = {
+        "quart": ["aiohttp"]
+    },
     keywords=['flask', 'hcaptcha', "validate", "captcha"],
     platforms='any',
     classifiers=[

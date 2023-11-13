@@ -107,11 +107,12 @@ class hCaptcha(object):
         def get_code():
             return dict(hcaptcha=Markup(self.get_code()))
 
-    def get_code(self, theme="light"):
+    def get_code(self, dark_theme=False):
         """
         Returns the new hCaptcha code
         :return:
         """
+        theme = "dark" if dark_theme else "light"
         return "" if not self.is_enabled else ("""
         <script src="https://hcaptcha.com/1/api.js" async defer></script>
         <div class="h-captcha" data-sitekey="{SITE_KEY}" data-theme="{THEME}"></div>

@@ -70,12 +70,12 @@ In the view that's going to validate the captcha
 
 **hCaptcha.__init__(app, site_key, secret_key, is_enabled=True)**
 
-**hCaptcha.get_code(theme="light")**
+**hCaptcha.get_code(dark_theme=False)**
 
 Returns the HTML code to implement. But you can use
 **{{ hcaptcha }}** directly in your template. A [dark
 theme](https://docs.hcaptcha.com/configuration#themes)
-can also be specified with `theme="dark"`.
+can also be specified with `dark_theme=True`.
 
 **hCaptcha.verify()**
 

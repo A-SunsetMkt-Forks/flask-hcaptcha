@@ -107,15 +107,16 @@ class hCaptcha(object):
         def get_code():
             return dict(hcaptcha=Markup(self.get_code()))
 
-    def get_code(self):
+    def get_code(self, dark_theme=False):
         """
         Returns the new hCaptcha code
         :return:
         """
+        theme = "dark" if dark_theme else "light"
         return "" if not self.is_enabled else ("""
         <script src="https://hcaptcha.com/1/api.js" async defer></script>
-        <div class="h-captcha" data-sitekey="{SITE_KEY}"></div>
-        """.format(SITE_KEY=BlueprintCompatibility.site_key))
+        <div class="h-captcha" data-sitekey="{SITE_KEY}" data-theme="{THEME}"></div>
+        """.format(SITE_KEY=BlueprintCompatibility.site_key, THEME=theme))
 
     def verify_sync(self, response=None, remote_ip=None):
         if self.is_enabled:

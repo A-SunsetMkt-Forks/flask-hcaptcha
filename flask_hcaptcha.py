@@ -43,6 +43,7 @@ http_client = None
 class BlueprintCompatibility(object):
     site_key = None
     secret_key = None
+    custom_data = None
 
 
 class DEFAULTS(object):
@@ -73,15 +74,18 @@ class hCaptcha(object):
             BlueprintCompatibility.site_key = site_key
             BlueprintCompatibility.secret_key = secret_key
             self.is_enabled = is_enabled
-
         elif app:
             self.init_app(app=app)
+        if kwargs:
+            BlueprintCompatibility.custom_data = " ".join([f'data-{key}="{value}"' for key, value in kwargs.items()])
+             
 
-    def init_app(self, app=None):
+    def init_app(self, app=None, **kwargs):
         self.__init__(
             site_key=app.config.get("HCAPTCHA_SITE_KEY"),
             secret_key=app.config.get("HCAPTCHA_SECRET_KEY"),
-            is_enabled=app.config.get("HCAPTCHA_ENABLED", DEFAULTS.IS_ENABLED)
+            is_enabled=app.config.get("HCAPTCHA_ENABLED", DEFAULTS.IS_ENABLED),
+            **kwargs
         )
         global request, http_client
         if app.config.get("HCAPTCHA_ASYNC", DEFAULTS.ASYNC):
@@ -115,8 +119,11 @@ class hCaptcha(object):
         theme = "dark" if dark_theme else "light"
         return "" if not self.is_enabled else ("""
         <script src="https://hcaptcha.com/1/api.js" async defer></script>
-        <div class="h-captcha" data-sitekey="{SITE_KEY}" data-theme="{THEME}"></div>
-        """.format(SITE_KEY=BlueprintCompatibility.site_key, THEME=theme))
+        <div class="h-captcha" data-sitekey="{SITE_KEY}" data-theme="{THEME}" {DATA}></div>
+        """.format(
+            SITE_KEY=BlueprintCompatibility.site_key,
+            THEME=theme,
+            DATA=BlueprintCompatibility.custom_data or ""))
 
     def verify_sync(self, response=None, remote_ip=None):
         if self.is_enabled:

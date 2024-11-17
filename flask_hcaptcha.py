@@ -107,23 +107,31 @@ class hCaptcha(object):
                 print("flask_hcaptcha: Missing dependencies")
                 exit()
 
+        @app.template_global()
+        def hcaptcha_with(**kwargs):
+            return Markup(self.get_code(**kwargs))
+
         @app.context_processor
         def get_code():
             return dict(hcaptcha=Markup(self.get_code()))
 
-    def get_code(self, dark_theme=False):
+    def get_code(self, dark_theme=False, **kwargs):
         """
         Returns the new hCaptcha code
         :return:
         """
         theme = "dark" if dark_theme else "light"
+        if kwargs:
+            custom_data = " ".join([f'data-{key}="{value}"' for key, value in kwargs.items()])
+        else:
+            custom_data = BlueprintCompatibility.custom_data
         return "" if not self.is_enabled else ("""
         <script src="https://hcaptcha.com/1/api.js" async defer></script>
         <div class="h-captcha" data-sitekey="{SITE_KEY}" data-theme="{THEME}" {DATA}></div>
         """.format(
             SITE_KEY=BlueprintCompatibility.site_key,
             THEME=theme,
-            DATA=BlueprintCompatibility.custom_data or ""))
+            DATA=custom_data or ""))
 
     def verify_sync(self, response=None, remote_ip=None):
         if self.is_enabled:

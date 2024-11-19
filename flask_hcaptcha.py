@@ -115,22 +115,20 @@ class hCaptcha(object):
         def get_code():
             return dict(hcaptcha=Markup(self.get_code()))
 
-    def get_code(self, dark_theme=False, **kwargs):
+    def get_code(self, **kwargs):
         """
         Returns the new hCaptcha code
         :return:
         """
-        theme = "dark" if dark_theme else "light"
         if kwargs:
             custom_data = " ".join([f'data-{key}="{value}"' for key, value in kwargs.items()])
         else:
             custom_data = BlueprintCompatibility.custom_data
         return "" if not self.is_enabled else ("""
         <script src="https://hcaptcha.com/1/api.js" async defer></script>
-        <div class="h-captcha" data-sitekey="{SITE_KEY}" data-theme="{THEME}" {DATA}></div>
+        <div class="h-captcha" data-sitekey="{SITE_KEY}" {DATA}></div>
         """.format(
             SITE_KEY=BlueprintCompatibility.site_key,
-            THEME=theme,
             DATA=custom_data or ""))
 
     def verify_sync(self, response=None, remote_ip=None):

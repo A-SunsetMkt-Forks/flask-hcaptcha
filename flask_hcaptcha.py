@@ -1,12 +1,9 @@
 """
-A hCaptcha extension for Flask based on flask-recaptcha
-"""
+Flask-hCaptcha
 
-__NAME__ = "Flask-hCaptcha"
-__version__ = "0.7.0"
-__license__ = "MIT"
-__author__ = "Knugi (originally ReCaptcha by Mardix)"
-__copyright__ = "(c) 2020 Knugi (originally ReCaptcha by Mardix 2015)"
+A hCaptcha extension for Flask based on flask-recaptcha+
+(c) 2020 Knugi (originally ReCaptcha by Mardix 2015)
+"""
 
 flask_available = False
 quart_available = False

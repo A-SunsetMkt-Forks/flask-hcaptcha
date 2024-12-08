@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flask-hcaptcha"
+version = "0.7.1"
+description = "A hCaptcha extension for Flask based on flask-recaptcha"
+readme = "README.md"
+license = {text = "MIT License"}
+authors = [
+    {name = "Knugi", email = "hello@knugi.com"}
+]
+keywords = ["flask", "hcaptcha", "validate", "captcha"]
+classifiers = [
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+requires-python = ">=3.9"
+dependencies = [
+    "requests"
+]
+
+[project.urls]
+Homepage = "https://github.com/KnugiHK/flask-hcaptcha/"
+
+[project.optional-dependencies]
+quart = ["aiohttp"]
+
+[tool.setuptools.packages.find]
+include = ["flask_hcaptcha"]
